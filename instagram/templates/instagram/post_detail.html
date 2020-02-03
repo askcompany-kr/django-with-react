@@ -1,9 +1,21 @@
-<h2>Author: {{ post.author }}</h2>
+{% extends "instagram/layout.html" %}
 
-{% if post.photo %}
-    <div>
-        <img src="{{ post.photo.url }}" />
-    </div>
-{% endif %}
+{% block title %}
+    Post Detail pk#{{ post.pk }}
+{% endblock title %}
 
-{{ post.message }}
+{% block content %}
+    <h2>Author: {{ post.author }}</h2>
+
+    {% if post.photo %}
+        <div>
+            <img src="{{ post.photo.url }}" />
+        </div>
+    {% endif %}
+
+    {{ post.message }}
+    <hr/>
+    <a href="{% url 'instagram:post_list' %}" class="btn btn-primary">
+        목록
+    </a>
+{% endblock content %}
