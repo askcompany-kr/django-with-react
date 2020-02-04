@@ -1,0 +1,17 @@
+{% extends "instagram/layout.html" %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="alert alert-danger">
+            정말 삭제하시겠습니까?
+        </div>
+
+        <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">
+            내용보기
+        </a>
+        <input type="submit" value="삭제하겠습니다." class="btn btn-danger" />
+
+    </form>
+{% endblock content %}
