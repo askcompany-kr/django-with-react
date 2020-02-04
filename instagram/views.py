@@ -19,12 +19,14 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user  # 현재 로그인 User Instance
             post.save()
+            messages.success(request, '포스팅을 저장했습니다.')
             return redirect(post)
     else:
         form = PostForm()
 
     return render(request, 'instagram/post_form.html', {
         'form': form,
+        'post': None,
     })
 
 
@@ -41,12 +43,14 @@ def post_edit(request, pk):
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save()
+            messages.success(request, '포스팅을 수정했습니다.')
             return redirect(post)
     else:
         form = PostForm(instance=post)
 
     return render(request, 'instagram/post_form.html', {
         'form': form,
+        'post': post,
     })
 
 
@@ -68,6 +72,7 @@ post_list = PostListView.as_view()
 #     q = request.GET.get('q', '')
 #     if q:
 #         qs = qs.filter(message__icontains=q)
+#
 #     # instagram/templates/instagram/post_list.html
 #     return render(request, 'instagram/post_list.html', {
 #         'post_list': qs,
