@@ -13,9 +13,14 @@
         </div>
     {% endif %}
 
-    {{ post.message }}
+    {{ post.message|linebreaks }}
+
     <hr/>
     <a href="{% url 'instagram:post_list' %}" class="btn btn-primary">
         목록
+    </a>
+
+    <a href="{% url 'instagram:post_edit' post.pk %}" class="btn btn-info">
+        수정
     </a>
 {% endblock content %}

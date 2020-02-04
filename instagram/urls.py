@@ -12,8 +12,11 @@ app_name = 'instagram'  # URL Reverse에서 namespace역할을 하게 됩니다.
 
 urlpatterns = [
     path('new/', views.post_new, name='post_new'),
+    path('<int:pk>/edit/', views.post_edit, name='post_edit'),
+
     path('', views.post_list, name='post_list'),
     path('<int:pk>/', views.post_detail, name='post_detail'),
+
     # path('archives/<int:year>/', views.archives_year),
     # re_path(r'archives/(?P<year>20\d{2})/', views.archives_year),
     # path('archives/<year:year>/', views.archives_year),
