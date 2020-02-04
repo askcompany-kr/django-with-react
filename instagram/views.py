@@ -4,8 +4,23 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import ListView, DetailView, ArchiveIndexView, YearArchiveView
 from django.http import HttpResponse, HttpRequest, Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Post
+from .forms import PostForm
+
+
+def post_new(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            return redirect(post)
+    else:
+        form = PostForm()
+
+    return render(request, 'instagram/post_form.html', {
+        'form': form,
+    })
 
 
 # post_list = login_required(ListView.as_view(model=Post, paginate_by=10))
