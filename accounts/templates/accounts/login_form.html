@@ -1,0 +1,12 @@
+{% extends "accounts/layout.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button class="btn btn-primary">로그인</button>
+        {% endbuttons %}
+    </form>
+{% endblock content %}
