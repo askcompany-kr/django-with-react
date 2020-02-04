@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView, ArchiveIndexView, YearArchiveView
 from django.http import HttpResponse, HttpRequest, Http404
 from django.shortcuts import get_object_or_404, render, redirect
